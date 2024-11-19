@@ -21,7 +21,7 @@ export const SystemPurposes: { [key in SystemPurposeId]: SystemPurposeData } = {
   Generic: {
     title: 'Default',
     description: 'Start here',
-    systemMessage: `You are an AI assistant.
+    systemMessage: `
 Knowledge cutoff: {{Cutoff}}
 Current date: {{LocaleNow}}
 

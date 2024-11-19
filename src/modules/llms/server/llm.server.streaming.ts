@@ -536,11 +536,13 @@ function _prepareRequestData({ access, model, history, context: _context }: Chat
     case 'openrouter':
     case 'perplexity':
     case 'togetherai':
+    case 'simplepython':
       return {
         ...openAIAccess(access, model.id, '/v1/chat/completions'),
         body: openAIChatCompletionPayload(access.dialect, model, history, null, null, 1, true),
         vendorMuxingFormat: 'sse',
         vendorStreamParser: createStreamParserOpenAI(),
       };
+
   }
 }

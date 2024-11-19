@@ -221,11 +221,11 @@ function ChatDrawer(props: {
 
     {/* Drawer Header */}
     <PageDrawerHeader title='Chats' onClose={closeDrawer}>
-      <Tooltip title={enableFolders ? 'Hide Folders' : 'Use Folders'}>
+      {/* <Tooltip title={enableFolders ? 'Hide Folders' : 'Use Folders'}>
         <IconButton size='sm' onClick={toggleEnableFolders}>
           {enableFolders ? <FoldersToggleOn /> : <FoldersToggleOff />}
         </IconButton>
-      </Tooltip>
+      </Tooltip> */}
     </PageDrawerHeader>
 
     {/* Folders List (shrink at twice the rate as the Titles) */}
@@ -303,63 +303,46 @@ function ChatDrawer(props: {
       {/* Chat Titles List (shrink as half the rate as the Folders List) */}
       <Box sx={{ flexGrow: 1, flexShrink: 1, flexBasis: '20rem', overflowY: 'auto', ...themeScalingMap[contentScaling].chatDrawerItemSx }}>
         {renderNavItems.map((item, idx) => item.type === 'nav-item-chat-data' ? (
-            <ChatDrawerItemMemo
-              key={'nav-chat-' + item.conversationId}
-              item={item}
-              showSymbols={showPersonaIcons && showSymbols}
-              bottomBarBasis={filteredChatsBarBasis}
-              onConversationActivate={handleConversationActivate}
-              onConversationBranch={onConversationBranch}
-              onConversationDeleteNoConfirmation={handleConversationDeleteNoConfirmation}
-              onConversationExport={onConversationsExportDialog}
-              onConversationFolderChange={handleConversationFolderChange}
-            />
-          ) : item.type === 'nav-item-group' ? (
-            <Typography key={'nav-divider-' + idx} level='body-xs' sx={{
-              textAlign: 'center',
-              my: 'calc(var(--ListItem-minHeight) / 4)',
-              // keeps the group header sticky to the top
-              position: 'sticky',
-              top: 0,
-              backgroundColor: 'background.popup',
-              zIndex: 1,
-            }}>
-              {item.title}
-            </Typography>
-          ) : item.type === 'nav-item-info-message' ? (
-            <Typography key={'nav-info-' + idx} level='body-xs' sx={{ textAlign: 'center', color: 'primary.softColor', my: 'calc(var(--ListItem-minHeight) / 4)' }}>
-              {filterHasStars && <StarOutlineRoundedIcon sx={{ color: 'primary.softColor', fontSize: 'xl', mb: -0.5, mr: 1 }} />}
-              {item.message}
-              {filterHasStars && <>
-                <Button variant='soft' size='sm' onClick={toggleFilterHasStars} sx={{ display: 'block', mt: 2, mx: 'auto' }}>
-                  remove filters
-                </Button>
-              </>}
-            </Typography>
-          ) : null,
+          <ChatDrawerItemMemo
+            key={'nav-chat-' + item.conversationId}
+            item={item}
+            showSymbols={showPersonaIcons && showSymbols}
+            bottomBarBasis={filteredChatsBarBasis}
+            onConversationActivate={handleConversationActivate}
+            onConversationBranch={onConversationBranch}
+            onConversationDeleteNoConfirmation={handleConversationDeleteNoConfirmation}
+            onConversationExport={onConversationsExportDialog}
+            onConversationFolderChange={handleConversationFolderChange}
+          />
+        ) : item.type === 'nav-item-group' ? (
+          <Typography key={'nav-divider-' + idx} level='body-xs' sx={{
+            textAlign: 'center',
+            my: 'calc(var(--ListItem-minHeight) / 4)',
+            // keeps the group header sticky to the top
+            position: 'sticky',
+            top: 0,
+            backgroundColor: 'background.popup',
+            zIndex: 1,
+          }}>
+            {item.title}
+          </Typography>
+        ) : item.type === 'nav-item-info-message' ? (
+          <Typography key={'nav-info-' + idx} level='body-xs' sx={{ textAlign: 'center', color: 'primary.softColor', my: 'calc(var(--ListItem-minHeight) / 4)' }}>
+            {filterHasStars && <StarOutlineRoundedIcon sx={{ color: 'primary.softColor', fontSize: 'xl', mb: -0.5, mr: 1 }} />}
+            {item.message}
+            {filterHasStars && <>
+              <Button variant='soft' size='sm' onClick={toggleFilterHasStars} sx={{ display: 'block', mt: 2, mx: 'auto' }}>
+                remove filters
+              </Button>
+            </>}
+          </Typography>
+        ) : null,
         )}
       </Box>
 
       <ListDivider sx={{ my: 0 }} />
 
       {/* Bottom commands */}
-      <Box sx={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-        <ListItemButton onClick={props.onConversationsImportDialog} sx={{ flex: 1 }}>
-          <ListItemDecorator>
-            <FileUploadOutlinedIcon />
-          </ListItemDecorator>
-          Import
-          {/*<OpenAIIcon sx={{  ml: 'auto' }} />*/}
-        </ListItemButton>
-
-        <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsExport} sx={{ flex: 1 }}>
-          <ListItemDecorator>
-            <FileDownloadOutlinedIcon />
-          </ListItemDecorator>
-          Export
-        </ListItemButton>
-      </Box>
-
       <ListItemButton disabled={filteredChatsAreEmpty} onClick={handleConversationsDeleteFiltered}>
         <ListItemDecorator>
           <DeleteOutlineIcon />

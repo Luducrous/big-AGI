@@ -60,7 +60,7 @@ const useAppChatStore = create<AppChatStore>()(persist(
     autoSuggestQuestions: false,
     setAutoSuggestQuestions: (autoSuggestQuestions: boolean) => _set({ autoSuggestQuestions }),
 
-    autoTitleChat: true,
+    autoTitleChat: false,
     setAutoTitleChat: (autoTitleChat: boolean) => _set({ autoTitleChat }),
 
     filterHasStars: false,
@@ -82,23 +82,23 @@ const useAppChatStore = create<AppChatStore>()(persist(
     setShowSystemMessages: (showSystemMessages: boolean) => _set({ showSystemMessages }),
 
   }), {
-    name: 'app-app-chat',
-    version: 1,
+  name: 'app-app-chat',
+  version: 1,
 
-    onRehydrateStorage: () => (state) => {
-      if (!state) return;
+  onRehydrateStorage: () => (state) => {
+    if (!state) return;
 
-      // for now, let text diff be off by default
-      state.showTextDiff = false;
-    },
-
-    migrate: (state: any, fromVersion: number): AppChatStore => {
-      // 0 -> 1: autoTitleChat was off by mistake - turn it on [Remove past Dec 1, 2023]
-      if (state && fromVersion < 1)
-        state.autoTitleChat = true;
-      return state;
-    },
+    // for now, let text diff be off by default
+    state.showTextDiff = false;
   },
+
+  migrate: (state: any, fromVersion: number): AppChatStore => {
+    // 0 -> 1: autoTitleChat was off by mistake - turn it on [Remove past Dec 1, 2023]
+    if (state && fromVersion < 1)
+      state.autoTitleChat = false;
+    return state;
+  },
+},
 ));
 
 

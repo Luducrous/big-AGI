@@ -1083,6 +1083,42 @@ export function groqModelSortFn(a: ModelDescriptionSchema, b: ModelDescriptionSc
   return a.id.localeCompare(b.id);
 }
 
+// Add after the other model definitions, before the Helpers section
+
+// Simple Python
+const _knownSimplePythonModels: ManualMappings = [
+  {
+    idPrefix: 'simple-python-model',
+    label: 'Simple Python',
+    description: 'A simple Python-based chat model',
+    contextWindow: 4096,
+    interfaces: [LLM_IF_OAI_Chat],
+    maxCompletionTokens: 1024,
+  },
+];
+
+export function simplePythonModelToModelDescription(modelId: string, created: number): ModelDescriptionSchema {
+  return fromManualMapping(_knownSimplePythonModels, modelId, created, undefined, {
+    idPrefix: modelId,
+    label: modelId.replaceAll('-', ' ').split(' ').map(word =>
+      word[0].toUpperCase() + word.slice(1)
+    ).join(' '),
+    description: 'Simple Python Chat Model',
+    contextWindow: 4096,
+    interfaces: [LLM_IF_OAI_Chat],
+  });
+}
+
+export function simplePythonModelFilter(model: OpenAIWire.Models.ModelDescription): boolean {
+  // Accept all models from our simple python server
+  return true;
+}
+
+export function simplePythonModelsSort(a: ModelDescriptionSchema, b: ModelDescriptionSchema): number {
+  // Simple alphabetical sorting by ID
+  return a.id.localeCompare(b.id);
+}
+
 
 // Helpers
 

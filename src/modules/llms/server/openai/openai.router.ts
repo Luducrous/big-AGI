@@ -11,7 +11,7 @@ import { Brand } from '~/common/app.config';
 import { fixupHost } from '~/common/util/urlUtils';
 
 import { OpenAIWire, WireOpenAICreateImageOutput, wireOpenAICreateImageOutputSchema, WireOpenAICreateImageRequest } from './openai.wiretypes';
-import { azureModelToModelDescription, deepseekModelToModelDescription, groqModelSortFn, groqModelToModelDescription, lmStudioModelToModelDescription, localAIModelToModelDescription, mistralModelsSort, mistralModelToModelDescription, oobaboogaModelToModelDescription, openAIModelFilter, openAIModelToModelDescription, openRouterModelFamilySortFn, openRouterModelToModelDescription, perplexityAIModelDescriptions, perplexityAIModelSort, togetherAIModelsToModelDescriptions } from './models.data';
+import { azureModelToModelDescription, deepseekModelToModelDescription, groqModelSortFn, groqModelToModelDescription, lmStudioModelToModelDescription, localAIModelToModelDescription, mistralModelsSort, mistralModelToModelDescription, oobaboogaModelToModelDescription, openAIModelFilter, openAIModelToModelDescription, openRouterModelFamilySortFn, openRouterModelToModelDescription, perplexityAIModelDescriptions, perplexityAIModelSort, simplePythonModelFilter, simplePythonModelsSort, simplePythonModelToModelDescription, togetherAIModelsToModelDescriptions } from './models.data';
 import { llmsChatGenerateWithFunctionsOutputSchema, llmsGenerateContextSchema, llmsListModelsOutputSchema, ModelDescriptionSchema } from '../llm.server.types';
 import { wilreLocalAIModelsApplyOutputSchema, wireLocalAIModelsAvailableOutputSchema, wireLocalAIModelsListOutputSchema } from './localai.wiretypes';
 
@@ -21,7 +21,7 @@ const ABERRATION_FIXUP_SQUASH = '\n\n\n---\n\n\n';
 
 
 const openAIDialects = z.enum([
-  'azure', 'deepseek', 'groq', 'lmstudio', 'localai', 'mistral', 'oobabooga', 'openai', 'openrouter', 'perplexity', 'togetherai',
+  'azure', 'deepseek', 'groq', 'lmstudio', 'localai', 'mistral', 'oobabooga', 'openai', 'openrouter', 'perplexity', 'togetherai', 'simplepython',
 ]);
 type OpenAIDialects = z.infer<typeof openAIDialects>;
 
@@ -168,6 +168,13 @@ export const llmOpenAIRouter = createTRPCRouter({
 
       // every dialect has a different way to enumerate models - we execute the mapping on the server side
       switch (access.dialect) {
+
+        case 'simplepython':
+          models = openAIModels
+            .filter(simplePythonModelFilter)
+            .map(model => simplePythonModelToModelDescription(model.id, model.created))
+            .sort(simplePythonModelsSort);
+          break;
 
         case 'deepseek':
           models = openAIModels
@@ -414,9 +421,23 @@ const DEFAULT_OPENAI_HOST = 'api.openai.com';
 const DEFAULT_OPENROUTER_HOST = 'https://openrouter.ai/api';
 const DEFAULT_PERPLEXITY_HOST = 'https://api.perplexity.ai';
 const DEFAULT_TOGETHERAI_HOST = 'https://api.together.xyz';
+const DEFAULT_SIMPLEPYTHON_HOST = 'http://localhost:5001';
 
 export function openAIAccess(access: OpenAIAccessSchema, modelRefId: string | null, apiPath: string): { headers: HeadersInit, url: string } {
   switch (access.dialect) {
+    case 'simplepython':
+      const simplePythonKey = access.oaiKey || ''; // Optional: if you want to support authentication
+      const simplePythonHost = fixupHost(access.oaiHost || DEFAULT_SIMPLEPYTHON_HOST, apiPath);
+      if (!simplePythonHost)
+        throw new Error('Missing SimplePython Host. Add it on the UI (Models Setup) or server side (your deployment).');
+
+      return {
+        headers: {
+          'Content-Type': 'application/json',
+          ...(simplePythonKey && { 'Authorization': `Bearer ${simplePythonKey}` }), // Optional: if you want to support authentication
+        },
+        url: simplePythonHost + apiPath,
+      };
 
     case 'azure':
       const azureKey = access.oaiKey || env.AZURE_OPENAI_API_KEY || '';

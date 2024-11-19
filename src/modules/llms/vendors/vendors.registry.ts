@@ -11,12 +11,14 @@ import { ModelVendorOpenAI } from './openai/openai.vendor';
 import { ModelVendorOpenRouter } from './openrouter/openrouter.vendor';
 import { ModelVendorPerplexity } from './perplexity/perplexity.vendor';
 import { ModelVendorTogetherAI } from './togetherai/togetherai.vendor';
+import { ModelVendorSimplePython } from './python/simplepython.vendor';
 
 import type { IModelVendor } from './IModelVendor';
 import { DLLMId, DModelSource, DModelSourceId, findLLMOrThrow, findSourceOrThrow } from '../store-llms';
 import { ModelVendorDeepseek } from './deepseek/deepseekai.vendor';
 
 export type ModelVendorId =
+  | 'simplepython'
   | 'anthropic'
   | 'azure'
   | 'googleai'
@@ -48,6 +50,7 @@ const MODEL_VENDOR_REGISTRY: Record<ModelVendorId, IModelVendor> = {
   perplexity: ModelVendorPerplexity,
   togetherai: ModelVendorTogetherAI,
   deepseek: ModelVendorDeepseek,
+  simplepython: ModelVendorSimplePython,
 } as Record<string, IModelVendor>;
 
 const MODEL_VENDOR_DEFAULT: ModelVendorId = 'openai';

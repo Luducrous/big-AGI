@@ -7,6 +7,7 @@ import { LLMOptionsOpenAI, ModelVendorOpenAI } from '../openai/openai.vendor';
 // Define the source setup type
 export interface SourceSetupSimplePython {
     oaiHost: string;
+    courseCode: string;
 }
 
 export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, OpenAIAccessSchema, LLMOptionsOpenAI> = {
@@ -24,6 +25,7 @@ export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, Open
     // Setup
     initializeSetup: () => ({
         oaiHost: 'http://localhost:5000',
+        courseCode: '',
     }),
 
     getTransportAccess: (partialSetup) => ({
@@ -33,6 +35,7 @@ export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, Open
         oaiHost: partialSetup?.oaiHost || 'http://localhost:5000',
         heliKey: '',
         moderationCheck: false,
+        courseCode: partialSetup?.courseCode || '',
     }),
 
     // Reuse all OpenAI handlers with proper typing

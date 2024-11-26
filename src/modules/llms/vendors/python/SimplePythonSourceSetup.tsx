@@ -20,7 +20,7 @@ export function SimplePythonSourceSetup(props: { sourceId: DModelSourceId }) {
         useSourceSetup(props.sourceId, ModelVendorSimplePython);
 
     // derived state
-    const { oaiHost } = access;
+    const { oaiHost, courseCode } = access;
 
     // fetch models
     const { isFetching, refetch, isError, error } =
@@ -33,6 +33,14 @@ export function SimplePythonSourceSetup(props: { sourceId: DModelSourceId }) {
             placeholder='http://localhost:5000'
             value={oaiHost}
             onChange={text => updateSetup({ oaiHost: text })}
+        />
+
+        <FormTextField
+            autoCompleteId='buddygpt-course-code'
+            title='Course Code'
+            placeholder='Enter course code'
+            value={courseCode}
+            onChange={text => updateSetup({ courseCode: text })}
         />
 
         <SetupFormRefetchButton

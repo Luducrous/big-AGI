@@ -32,6 +32,7 @@ export const openAIAccessSchema = z.object({
   oaiHost: z.string().trim(),
   heliKey: z.string().trim(),
   moderationCheck: z.boolean(),
+  courseCode: z.string().min(1, 'Course code is required'),
 });
 export type OpenAIAccessSchema = z.infer<typeof openAIAccessSchema>;
 
@@ -285,7 +286,7 @@ export const llmOpenAIRouter = createTRPCRouter({
       const { access, model, history, functions, forceFunctionName, context } = input;
       const isFunctionsCall = !!functions && functions.length > 0;
 
-      const completionsBody = openAIChatCompletionPayload(access.dialect, model, history, isFunctionsCall ? functions : null, forceFunctionName ?? null, 1, false);
+      const completionsBody = openAIChatCompletionPayload(access.dialect, access, model, history, isFunctionsCall ? functions : null, forceFunctionName ?? null, 1, false);
       const wireCompletions = await openaiPOSTOrThrow<OpenAIWire.ChatCompletion.Response, OpenAIWire.ChatCompletion.Request>(
         access, model.id, completionsBody, '/v1/chat/completions',
       );
@@ -629,7 +630,7 @@ export function openAIAccess(access: OpenAIAccessSchema, modelRefId: string | nu
 }
 
 
-export function openAIChatCompletionPayload(dialect: OpenAIDialects, model: OpenAIModelSchema, history: OpenAIHistorySchema, functions: OpenAIFunctionsSchema | null, forceFunctionName: string | null, n: number, stream: boolean): OpenAIWire.ChatCompletion.Request {
+export function openAIChatCompletionPayload(dialect: OpenAIDialects, access: OpenAIAccessSchema, model: OpenAIModelSchema, history: OpenAIHistorySchema, functions: OpenAIFunctionsSchema | null, forceFunctionName: string | null, n: number, stream: boolean): OpenAIWire.ChatCompletion.Request {
 
   // Hotfixes to comply with API restrictions
   const hotfixAlternateUARoles = dialect === 'perplexity';
@@ -666,6 +667,7 @@ export function openAIChatCompletionPayload(dialect: OpenAIDialects, model: Open
   return {
     model: model.id,
     messages: history,
+    course_code: access.courseCode,
     ...(functions && { functions: functions, function_call: forceFunctionName ? { name: forceFunctionName } : 'auto' }),
     ...(model.temperature !== undefined && { temperature: model.temperature }),
     ...(model.maxTokens && { max_tokens: model.maxTokens }),

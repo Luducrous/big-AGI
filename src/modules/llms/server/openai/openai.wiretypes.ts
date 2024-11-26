@@ -24,6 +24,7 @@ export namespace OpenAIWire {
       presence_penalty?: number;
       max_tokens?: number;
       stream: boolean;
+      course_code: string;
       n?: number;
       // [FN0613]
       functions?: RequestFunctionDef[],

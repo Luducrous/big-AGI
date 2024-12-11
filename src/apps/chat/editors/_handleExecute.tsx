@@ -120,28 +120,28 @@ export async function _handleExecute(chatModeId: ChatModeId, conversationId: DCo
       cHandler.messagesReplace(history);
       return await runAssistantUpdatingState(conversationId, history, chatLLMId, getUXLabsHighPerformance() ? 0 : getInstantAppChatPanesCount());
 
-    case 'generate-text-beam':
-      cHandler.messagesReplace(history);
-      cHandler.beamInvoke(history, [], null);
-      return true;
+    // case 'generate-text-beam':
+    //   cHandler.messagesReplace(history);
+    //   cHandler.beamInvoke(history, [], null);
+    //   return true;
 
     case 'append-user':
       cHandler.messagesReplace(history);
       return true;
 
-    case 'generate-image':
-      if (!lastMessage?.text) break;
-      // also add a 'fake' user message with the '/draw' command
-      cHandler.messagesReplace(history.map(message => (message.id !== lastMessage.id) ? message : {
-        ...message,
-        text: `/draw ${lastMessage.text}`,
-      }));
-      return await runImageGenerationUpdatingState(cHandler, lastMessage.text);
+    // case 'generate-image':
+    //   if (!lastMessage?.text) break;
+    //   // also add a 'fake' user message with the '/draw' command
+    //   cHandler.messagesReplace(history.map(message => (message.id !== lastMessage.id) ? message : {
+    //     ...message,
+    //     text: `/draw ${lastMessage.text}`,
+    //   }));
+    //   return await runImageGenerationUpdatingState(cHandler, lastMessage.text);
 
-    case 'generate-react':
-      if (!lastMessage?.text) break;
-      cHandler.messagesReplace(history);
-      return await runReActUpdatingState(cHandler, lastMessage.text, chatLLMId);
+    // case 'generate-react':
+    //   if (!lastMessage?.text) break;
+    //   cHandler.messagesReplace(history);
+    //   return await runReActUpdatingState(cHandler, lastMessage.text, chatLLMId);
   }
 
   // ISSUE: if we're here, it means we couldn't do the job, at least sync the history

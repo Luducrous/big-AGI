@@ -54,10 +54,10 @@ export const CHAT_NOVEL_TITLE = 'Chat';
  */
 export type ChatModeId =
   | 'generate-text'
-  | 'generate-text-beam'
+  // | 'generate-text-beam'
   | 'append-user'
-  | 'generate-image'
-  | 'generate-react';
+// | 'generate-image'
+// | 'generate-react';
 
 
 export interface AppChatIntent {
@@ -278,10 +278,10 @@ export function AppChat() {
     if (!conversation)
       return;
     const imaginedPrompt = await imaginePromptFromText(messageText, conversationId) || 'An error sign.';
-    await handleExecuteAndOutcome('generate-image', conversationId, [
-      ...conversation.messages,
-      createDMessage('user', imaginedPrompt),
-    ]);
+    // await handleExecuteAndOutcome('generate-image', conversationId, [
+    //   ...conversation.messages,
+    //   createDMessage('user', imaginedPrompt),
+    // ]);
   }, [handleExecuteAndOutcome]);
 
   const handleTextSpeak = React.useCallback(async (text: string): Promise<void> => {
@@ -421,44 +421,44 @@ export function AppChat() {
   const barAltTitle = showAltTitleBar ? focusedChatTitle ?? 'No Chat' : null;
 
   const focusedBarContent = React.useMemo(() => beamOpenStoreInFocusedPane
-      ? <ChatBarAltBeam beamStore={beamOpenStoreInFocusedPane} isMobile={isMobile} />
-      : (barAltTitle === null)
-        ? <ChatBarDropdowns conversationId={focusedPaneConversationId} />
-        : <ChatBarAltTitle conversationId={focusedPaneConversationId} conversationTitle={barAltTitle} />
+    ? <ChatBarAltBeam beamStore={beamOpenStoreInFocusedPane} isMobile={isMobile} />
+    : (barAltTitle === null)
+      ? <ChatBarDropdowns conversationId={focusedPaneConversationId} />
+      : <ChatBarAltTitle conversationId={focusedPaneConversationId} conversationTitle={barAltTitle} />
     , [barAltTitle, beamOpenStoreInFocusedPane, focusedPaneConversationId, isMobile],
   );
 
   const drawerContent = React.useMemo(() =>
-      <ChatDrawerMemo
-        isMobile={isMobile}
-        activeConversationId={focusedPaneConversationId}
-        activeFolderId={activeFolderId}
-        chatPanesConversationIds={chatPanes.map(pane => pane.conversationId).filter(Boolean) as DConversationId[]}
-        disableNewButton={disableNewButton}
-        onConversationActivate={handleOpenConversationInFocusedPane}
-        onConversationBranch={handleConversationBranch}
-        onConversationNew={handleConversationNewInFocusedPane}
-        onConversationsDelete={handleDeleteConversations}
-        onConversationsExportDialog={handleConversationExport}
-        onConversationsImportDialog={handleConversationImportDialog}
-        setActiveFolderId={setActiveFolderId}
-      />,
+    <ChatDrawerMemo
+      isMobile={isMobile}
+      activeConversationId={focusedPaneConversationId}
+      activeFolderId={activeFolderId}
+      chatPanesConversationIds={chatPanes.map(pane => pane.conversationId).filter(Boolean) as DConversationId[]}
+      disableNewButton={disableNewButton}
+      onConversationActivate={handleOpenConversationInFocusedPane}
+      onConversationBranch={handleConversationBranch}
+      onConversationNew={handleConversationNewInFocusedPane}
+      onConversationsDelete={handleDeleteConversations}
+      onConversationsExportDialog={handleConversationExport}
+      onConversationsImportDialog={handleConversationImportDialog}
+      setActiveFolderId={setActiveFolderId}
+    />,
     [activeFolderId, chatPanes, disableNewButton, focusedPaneConversationId, handleConversationBranch, handleConversationExport, handleConversationImportDialog, handleConversationNewInFocusedPane, handleDeleteConversations, handleOpenConversationInFocusedPane, isMobile],
   );
 
   const focusedMenuItems = React.useMemo(() =>
-      <ChatPageMenuItems
-        isMobile={isMobile}
-        conversationId={focusedPaneConversationId}
-        disableItems={!focusedPaneConversationId || isFocusedChatEmpty}
-        hasConversations={hasConversations}
-        isMessageSelectionMode={isMessageSelectionMode}
-        onConversationBranch={handleConversationBranch}
-        onConversationClear={handleConversationClear}
-        onConversationFlatten={handleConversationFlatten}
-        // onConversationNew={handleConversationNewInFocusedPane}
-        setIsMessageSelectionMode={setIsMessageSelectionMode}
-      />,
+    <ChatPageMenuItems
+      isMobile={isMobile}
+      conversationId={focusedPaneConversationId}
+      disableItems={!focusedPaneConversationId || isFocusedChatEmpty}
+      hasConversations={hasConversations}
+      isMessageSelectionMode={isMessageSelectionMode}
+      onConversationBranch={handleConversationBranch}
+      onConversationClear={handleConversationClear}
+      onConversationFlatten={handleConversationFlatten}
+      // onConversationNew={handleConversationNewInFocusedPane}
+      setIsMessageSelectionMode={setIsMessageSelectionMode}
+    />,
     [focusedPaneConversationId, handleConversationBranch, handleConversationClear, handleConversationFlatten, hasConversations, isFocusedChatEmpty, isMessageSelectionMode, isMobile],
   );
 

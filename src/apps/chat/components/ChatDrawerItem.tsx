@@ -319,7 +319,7 @@ function ChatDrawerItem(props: {
               </Tooltip>
 
               {!isNew && <>
-                <Tooltip disableInteractive title='Auto-Title'>
+                {/* <Tooltip disableInteractive title='Auto-Title'>
                   <FadeInButton size='sm' disabled={isEditingTitle || isAutoEditingTitle} onClick={handleTitleEditAuto}>
                     <AutoFixHighIcon />
                   </FadeInButton>
@@ -329,7 +329,7 @@ function ChatDrawerItem(props: {
                   <FadeInButton size='sm' onClick={handleConversationBranch}>
                     <ForkRightIcon />
                   </FadeInButton>
-                </Tooltip>
+                </Tooltip> */}
 
                 <Tooltip disableInteractive title='Export Chat'>
                   <FadeInButton size='sm' onClick={handleConversationExport}>
@@ -381,7 +381,7 @@ function ChatDrawerItem(props: {
 
     // Inactive Conversation - click to activate
     <ListItem
-      // sx={{ '--ListItem-minHeight': '2.75rem' }}
+    // sx={{ '--ListItem-minHeight': '2.75rem' }}
     >
 
       <ListItemButton

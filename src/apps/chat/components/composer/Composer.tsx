@@ -229,9 +229,9 @@ export function Composer(props: {
     handleSendAction(chatModeId, composeText);
   }, [chatModeId, composeText, handleSendAction]);
 
-  const handleSendTextBeamClicked = React.useCallback(() => {
-    handleSendAction('generate-text-beam', composeText);
-  }, [composeText, handleSendAction]);
+  // const handleSendTextBeamClicked = React.useCallback(() => {
+  //   handleSendAction('generate-text-beam', composeText);
+  // }, [composeText, handleSendAction]);
 
   const handleStopClicked = React.useCallback(() => {
     !!props.conversationId && stopTyping(props.conversationId);
@@ -337,12 +337,12 @@ export function Composer(props: {
         return e.preventDefault();
       }
 
-      // Ctrl (Windows) or Command (Mac) + Enter: send for beaming
-      if ((isMacUser && e.metaKey && !e.ctrlKey) || (!isMacUser && e.ctrlKey && !e.metaKey)) {
-        if (handleSendAction('generate-text-beam', composeText))
-          touchCtrlEnter();
-        return e.preventDefault();
-      }
+      // // Ctrl (Windows) or Command (Mac) + Enter: send for beaming
+      // if ((isMacUser && e.metaKey && !e.ctrlKey) || (!isMacUser && e.ctrlKey && !e.metaKey)) {
+      //   if (handleSendAction('generate-text-beam', composeText))
+      //     touchCtrlEnter();
+      //   return e.preventDefault();
+      // }
 
       // Shift: toggles the 'enter is newline'
       if (e.shiftKey)
@@ -518,10 +518,10 @@ export function Composer(props: {
 
 
   const isText = chatModeId === 'generate-text';
-  const isTextBeam = chatModeId === 'generate-text-beam';
+  const isTextBeam = false;
   const isAppend = chatModeId === 'append-user';
-  const isReAct = chatModeId === 'generate-react';
-  const isDraw = chatModeId === 'generate-image';
+  const isReAct = false;
+  const isDraw = false;
 
   const showChatReplyTo = !!replyToGenerateText;
   const showChatExtras = isText && !showChatReplyTo;
@@ -616,7 +616,7 @@ export function Composer(props: {
               {/*</FormHelperText>*/}
 
               {/* Responsive Open Files button */}
-              <ButtonAttachFileMemo onAttachFilePicker={handleAttachFilePicker} />
+              {/* <ButtonAttachFileMemo onAttachFilePicker={handleAttachFilePicker} /> */}
 
               {/* Responsive Paste button */}
               {supportsClipboardRead && <ButtonAttachClipboardMemo onClick={attachAppendClipboardItems} />}
@@ -779,10 +779,10 @@ export function Composer(props: {
 
               {/* [mobile] bottom-corner secondary button */}
               {isMobile && (showChatExtras
-                  ? <ButtonCallMemo isMobile disabled={!props.conversationId || !chatLLMId} onClick={handleCallClicked} />
-                  : isDraw
-                    ? <ButtonOptionsDraw isMobile onClick={handleDrawOptionsClicked} sx={{ mr: { xs: 1, md: 2 } }} />
-                    : <IconButton disabled sx={{ mr: { xs: 1, md: 2 } }} />
+                ? <ButtonCallMemo isMobile disabled={!props.conversationId || !chatLLMId} onClick={handleCallClicked} />
+                : isDraw
+                  ? <ButtonOptionsDraw isMobile onClick={handleDrawOptionsClicked} sx={{ mr: { xs: 1, md: 2 } }} />
+                  : <IconButton disabled sx={{ mr: { xs: 1, md: 2 } }} />
               )}
 
               {/* Responsive Send/Stop buttons */}
@@ -842,30 +842,18 @@ export function Composer(props: {
               </ButtonGroup>
 
               {/* [desktop] secondary-top buttons */}
-              {isDesktop && showChatExtras && !assistantAbortible && (
+              {/* {isDesktop && showChatExtras && !assistantAbortible && (
                 <ButtonBeamMemo
                   disabled={!props.conversationId || !chatLLMId || !llmAttachments.isOutputAttacheable}
                   hasContent={!!composeText}
                   onClick={handleSendTextBeamClicked}
                 />
-              )}
+              )} */}
 
             </Box>
 
             {/* [desktop] Multicast switch (under the Chat button) */}
             {isDesktop && props.isMulticast !== null && <ButtonMultiChatMemo multiChat={props.isMulticast} onSetMultiChat={props.setIsMulticast} />}
-
-            {/* [desktop] secondary buttons (aligned to bottom for now, and mutually exclusive) */}
-            {isDesktop && <Box sx={{ mt: 'auto', display: 'grid', gap: 1 }}>
-
-              {/* [desktop] Call secondary button */}
-              {showChatExtras && <ButtonCallMemo disabled={!props.conversationId || !chatLLMId} onClick={handleCallClicked} />}
-
-              {/* [desktop] Draw Options secondary button */}
-              {isDraw && <ButtonOptionsDraw onClick={handleDrawOptionsClicked} />}
-
-            </Box>}
-
           </Box>
         </Grid>
 

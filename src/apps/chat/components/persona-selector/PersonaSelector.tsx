@@ -158,28 +158,23 @@ export function PersonaSelector(props: { conversationId: DConversationId, runExa
 
   // Handlers
 
-// Modify the handlePurposeChanged function to check for the YouTube Transcriber
+  // Modify the handlePurposeChanged function to check for the YouTube Transcriber
   const handlePurposeChanged = React.useCallback((purposeId: SystemPurposeId | null) => {
     if (purposeId) {
-      if (purposeId === 'YouTubeTranscriber') {
-        // If the YouTube Transcriber tile is clicked, set the state accordingly
-        setIsYouTubeTranscriberActive(true);
-      } else {
-        setIsYouTubeTranscriberActive(false);
-      }
+      setIsYouTubeTranscriberActive(false);
       if (setSystemPurposeId) {
         setSystemPurposeId(props.conversationId, purposeId);
       }
     }
   }, [props.conversationId, setSystemPurposeId]);
 
-  React.useEffect(() => {
-    const isTranscriberActive = systemPurposeId === 'YouTubeTranscriber';
-    setIsYouTubeTranscriberActive(isTranscriberActive);
-  }, [systemPurposeId]);
+  // React.useEffect(() => {
+  //   const isTranscriberActive = systemPurposeId === 'YouTubeTranscriber';
+  //   setIsYouTubeTranscriberActive(isTranscriberActive);
+  // }, [systemPurposeId]);
 
 
-// Implement handleAddMessage function
+  // Implement handleAddMessage function
   const handleAddMessage = (messageText: string) => {
     // Retrieve the appendMessage action from the useChatStore
     const { appendMessage } = useChatStore.getState();
@@ -334,7 +329,7 @@ export function PersonaSelector(props: { conversationId: DConversationId, runExa
           );
         })}
 
-        {/* Persona Creator Tile */}
+        {/* Persona Creator Tile
         {(editMode || !hidePersonaCreator) && (
           <Tile
             text='Persona Creator'
@@ -349,7 +344,7 @@ export function PersonaSelector(props: { conversationId: DConversationId, runExa
               backgroundColor: 'neutral.softDisabledBg',
             }}
           />
-        )}
+        )} */}
 
 
         {/* [row -3] Description */}

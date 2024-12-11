@@ -276,9 +276,9 @@ export const useChatStore = create<ConversationsStore>()(devtools(
 
       setAbortController: (conversationId: string, abortController: AbortController | null) =>
         _get()._editConversation(conversationId, () =>
-          ({
-            abortController: abortController,
-          })),
+        ({
+          abortController: abortController,
+        })),
 
       stopTyping: (conversationId: string) =>
         _get()._editConversation(conversationId, conversation => {
@@ -493,7 +493,7 @@ export const useConversation = (conversationId: DConversationId | null) => useCh
   const conversation = conversationId ? conversations.find(_c => _c.id === conversationId) ?? null : null;
   const title = conversation ? conversationTitle(conversation) : null;
   const isEmpty = conversation ? !conversation.messages.length : true;
-  const isDeveloper = conversation?.systemPurposeId === 'Developer';
+  const isDeveloper = conversation?.systemPurposeId === 'ExamCreator';
   const conversationIdx = conversation ? conversations.findIndex(_c => _c.id === conversation.id) : -1;
 
   const hasConversations = conversations.length > 1 || (conversations.length === 1 && !!conversations[0].messages.length);

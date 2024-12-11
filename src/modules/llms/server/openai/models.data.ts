@@ -1089,8 +1089,8 @@ export function groqModelSortFn(a: ModelDescriptionSchema, b: ModelDescriptionSc
 const _knownSimplePythonModels: ManualMappings = [
   {
     idPrefix: 'simple-python-model',
-    label: 'Simple Python',
-    description: 'A simple Python-based chat model',
+    label: 'Zwiers AI Assistant',
+    description: 'Zwiers AI Assistant for Zwiers Language & Exam Centre',
     contextWindow: 4096,
     interfaces: [LLM_IF_OAI_Chat],
     maxCompletionTokens: 1024,
@@ -1103,7 +1103,7 @@ export function simplePythonModelToModelDescription(modelId: string, created: nu
     label: modelId.replaceAll('-', ' ').split(' ').map(word =>
       word[0].toUpperCase() + word.slice(1)
     ).join(' '),
-    description: 'Simple Python Chat Model',
+    description: 'Zwiers AI Assistant Chat Model',
     contextWindow: 4096,
     interfaces: [LLM_IF_OAI_Chat],
   });

@@ -11,7 +11,7 @@ export interface SourceSetupSimplePython {
 
 export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, OpenAIAccessSchema, LLMOptionsOpenAI> = {
     id: 'simplepython',
-    name: 'Simple Python',
+    name: 'Zwiers AI Assistant',
     rank: 100,
     location: 'local',
     instanceLimit: 1,

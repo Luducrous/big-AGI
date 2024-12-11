@@ -92,7 +92,7 @@ Note: After the V2 release in Q4, `v2/dev` will become the default branch and `v
 <details>
 <summary>What's New in 1.13.0 · Feb 8, 2024 · Multi + Mind</summary>
 
-https://github.com/enricoros/big-AGI/assets/32999/01732528-730e-41dc-adc7-511385686b13
+<https://github.com/enricoros/big-AGI/assets/32999/01732528-730e-41dc-adc7-511385686b13>
 
 - **Side-by-Side Split Windows**: multitask with parallel conversations. [#208](https://github.com/enricoros/big-AGI/issues/208)
 - **Multi-Chat Mode**: message everyone, all at once. [#388](https://github.com/enricoros/big-AGI/issues/388)
@@ -107,7 +107,7 @@ https://github.com/enricoros/big-AGI/assets/32999/01732528-730e-41dc-adc7-511385
 <details>
 <summary>What's New in 1.12.0 · Jan 26, 2024 · AGI Hotline</summary>
 
-https://github.com/enricoros/big-AGI/assets/32999/95ceb03c-945d-4fdd-9a9f-3317beb54f3f
+<https://github.com/enricoros/big-AGI/assets/32999/95ceb03c-945d-4fdd-9a9f-3317beb54f3f>
 
 - **Voice Calls**: real-time voice call your personas out of the blue or in relation to a chat [#354](https://github.com/enricoros/big-AGI/issues/354)
 - Support **OpenAI 0125** Models. [#364](https://github.com/enricoros/big-AGI/issues/364)
@@ -123,7 +123,7 @@ https://github.com/enricoros/big-AGI/assets/32999/95ceb03c-945d-4fdd-9a9f-3317be
 <details>
 <summary>What's New in 1.11.0 · Jan 16, 2024 · Singularity</summary>
 
-https://github.com/enricoros/big-AGI/assets/1590910/a6b8e172-0726-4b03-a5e5-10cfcb110c68
+<https://github.com/enricoros/big-AGI/assets/1590910/a6b8e172-0726-4b03-a5e5-10cfcb110c68>
 
 - **Find chats**: search in titles and content, with frequency ranking. [#329](https://github.com/enricoros/big-AGI/issues/329)
 - **Commands**: command auto-completion (type '/'). [#327](https://github.com/enricoros/big-AGI/issues/327)
@@ -151,7 +151,7 @@ For full details and former releases, check out the [changelog](docs/changelog.m
 ## 👉 Key Features ✨
 
 | ![Advanced AI](https://img.shields.io/badge/Advanced%20AI-32383e?style=for-the-badge&logo=ai&logoColor=white) | ![100+ AI Models](https://img.shields.io/badge/100%2B%20AI%20Models-32383e?style=for-the-badge&logo=ai&logoColor=white) | ![Flow-state UX](https://img.shields.io/badge/Flow--state%20UX-32383e?style=for-the-badge&logo=flow&logoColor=white) | ![Privacy First](https://img.shields.io/badge/Privacy%20First-32383e?style=for-the-badge&logo=privacy&logoColor=white) | ![Advanced Tools](https://img.shields.io/badge/Fun%20To%20Use-f22a85?style=for-the-badge&logo=tools&logoColor=white) |  
-|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------| 
+|---------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | **Chat**<br/>**Call**<br/>**Beam**<br/>**Draw**, ...                                                          | Local & Cloud<br/>Open & Closed<br/>Cheap & Heavy<br/>Google, Mistral, ...                                              | Attachments<br/>Diagrams<br/>Multi-Chat<br/>Mobile-first UI                                                          | Stored Locally<br/>Easy self-Host<br/>Local actions<br/>Data = Gold                                                    | AI Personas<br/>Voice Modes<br/>Screen Capture<br/>Camera + OCR                                                      |
 
 ![big-AGI screenshot](docs/pixels/big-AGI-compo-20240201_small.png)
@@ -163,19 +163,19 @@ You can easily configure 100s of AI models in big-AGI:
 | Opensource Servers  | [LocalAI](https://localai.io/) (multimodal) · [Ollama](https://ollama.com/) · [Oobabooga](https://github.com/oobabooga/text-generation-webui)                                                                                   |
 | Local Servers       | [LM Studio](https://lmstudio.ai/)                                                                                                                                                                                               |
 | Multimodal services | [Azure](https://azure.microsoft.com/en-us/products/ai-services/openai-service) · [Google Gemini](https://ai.google.dev/) · [OpenAI](https://platform.openai.com/docs/overview)                                                  |
-| Language services   | [Anthropic](https://anthropic.com) · [Groq](https://wow.groq.com/) · [Mistral](https://mistral.ai/) · [OpenRouter](https://openrouter.ai/) · [Perplexity](https://www.perplexity.ai/) · [Together AI](https://www.together.ai/) | 
-| Image services      | [Prodia](https://prodia.com/) (SDXL)                                                                                                                                                                                            | 
-| Speech services     | [ElevenLabs](https://elevenlabs.io) (Voice synthesis / cloning)                                                                                                                                                                 | 
+| Language services   | [Anthropic](https://anthropic.com) · [Groq](https://wow.groq.com/) · [Mistral](https://mistral.ai/) · [OpenRouter](https://openrouter.ai/) · [Perplexity](https://www.perplexity.ai/) · [Together AI](https://www.together.ai/) |
+| Image services      | [Prodia](https://prodia.com/) (SDXL)                                                                                                                                                                                            |
+| Speech services     | [ElevenLabs](https://elevenlabs.io) (Voice synthesis / cloning)                                                                                                                                                                 |
 
 Add extra functionality with these integrations:
 
 | **More**     | _integrations_                                                                                                 |
-|:-------------|:---------------------------------------------------------------------------------------------------------------| 
+|:-------------|:---------------------------------------------------------------------------------------------------------------|
 | Web Browse   | [Browserless](https://www.browserless.io/) · [Puppeteer](https://pptr.dev/)-based                              |
 | Web Search   | [Google CSE](https://programmablesearchengine.google.com/)                                                     |
 | Code Editors | [CodePen](https://codepen.io/pen/) · [StackBlitz](https://stackblitz.com/) · [JSFiddle](https://jsfiddle.net/) |
-| Sharing      | [Paste.gg](https://paste.gg/) (Paste chats)                                                                    | 
-| Tracking     | [Helicone](https://www.helicone.ai) (LLM Observability)                                                        | 
+| Sharing      | [Paste.gg](https://paste.gg/) (Paste chats)                                                                    |
+| Tracking     | [Helicone](https://www.helicone.ai) (LLM Observability)                                                        |
 
 [//]: # (- [x] **Flow-state UX** for uncompromised productivity)
 
@@ -211,7 +211,7 @@ Or bring your API keys and jump straight into our free instance on [big-AGI.com]
 
 <br/>
 
-# 🌟 Get Involved!
+# 🌟 Get Involved
 
 [//]: # ([![Official Discord]&#40;https://img.shields.io/discord/1098796266906980422?label=discord&logo=discord&logoColor=%23fff&style=for-the-badge&#41;]&#40;https://discord.gg/MkH4qj2Jp9&#41;)
 [![Official Discord](https://discordapp.com/api/guilds/1098796266906980422/widget.png?style=banner2)](https://discord.gg/MkH4qj2Jp9)
@@ -235,3 +235,4 @@ Or bring your API keys and jump straight into our free instance on [big-AGI.com]
 ---
 
 2023-2024 · Enrico Ros x [big-AGI](https://big-agi.com) · License: [MIT](LICENSE) · Made with 💙
+!

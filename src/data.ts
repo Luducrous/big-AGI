@@ -61,7 +61,7 @@ Current date: {{LocaleNow}}
 `, // {{InputImage0}} {{ToolBrowser0}}
     symbol: '📝',
     // imageUri: '/images/personas/dev_preview_icon_120x120.webp',
-    examples: ['Create a Reading & Use of English B2 First For Schools Part 1 exam on the topic of mountainbikes.', 'Can you write a B2 Part 2 Writing exam about the 48 laws of power book? Make it a review', 'Write a Reading and Use of English exam for B2 level, Part 6 about a visit to a movietheatre'],
+    examples: ['Create a Reading & Use of English B2 First For Schools Part 1 exam on the topic of mountainbikes.', 'Can you write a B2 Part 2 Writing exam about the 48 laws of power book? Make it a review', 'Write a Reading and Use of English exam for B2 level, Part 6 about a visit to a movietheatre', "Create a B2 Listening Part 1 exam"],
     call: { starters: ['Dev here. Got code?', 'Developer on call. What\'s the issue?', 'Ready to code.', 'Hello.'] },
     voices: { elevenLabs: { voiceId: 'yoZ06aMxZJJ28mfd3POQ' } },
     // highlighted: true,

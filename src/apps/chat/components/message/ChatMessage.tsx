@@ -167,8 +167,8 @@ function explainErrorInMessage(text: string, isAssistant: boolean, modelId?: str
     // note that "model_not_found" is different than "The model `gpt-xyz` does not exist" message
     errorMessage = <>
       The API key appears to be unauthorized for {modelId || 'this model'}. You can change to <b>GPT-3.5
-      Turbo</b> and simultaneously <Link noLinkStyle href='https://openai.com/waitlist/gpt-4-api' target='_blank'>request
-      access</Link> to the desired model.
+        Turbo</b> and simultaneously <Link noLinkStyle href='https://openai.com/waitlist/gpt-4-api' target='_blank'>request
+          access</Link> to the desired model.
     </>;
   } else if (text.includes('"context_length_exceeded"')) {
     // TODO: propose to summarize or split the input?
@@ -187,7 +187,7 @@ function explainErrorInMessage(text: string, isAssistant: boolean, modelId?: str
     errorMessage = <>
       The API key appears to be incorrect or to have expired.
       Please <Link noLinkStyle href='https://platform.openai.com/account/api-keys' target='_blank'>check your
-      API key</Link> and update it in <b>Models</b>.
+        API key</Link> and update it in <b>Models</b>.
     </>;
   } else if (text.includes('"insufficient_quota"')) {
     errorMessage = <>
@@ -705,15 +705,6 @@ export function ChatMessage(props: {
           </Box>
           {/* Delete / Branch / Truncate */}
           {!!props.onMessageBranch && <ListDivider />}
-          {!!props.onMessageBranch && (
-            <MenuItem onClick={handleOpsBranch} disabled={fromSystem}>
-              <ListItemDecorator>
-                <ForkRightIcon />
-              </ListItemDecorator>
-              Branch
-              {!props.isBottom && <span style={{ opacity: 0.5 }}>from here</span>}
-            </MenuItem>
-          )}
           {!!props.onMessageDelete && (
             <MenuItem onClick={handleOpsDelete} disabled={false /*fromSystem*/}>
               <ListItemDecorator><ClearIcon /></ListItemDecorator>
@@ -721,21 +712,7 @@ export function ChatMessage(props: {
               <span style={{ opacity: 0.5 }}>message</span>
             </MenuItem>
           )}
-          {!!props.onMessageTruncate && (
-            <MenuItem onClick={handleOpsTruncate} disabled={props.isBottom}>
-              <ListItemDecorator><VerticalAlignBottomIcon /></ListItemDecorator>
-              Truncate
-              <span style={{ opacity: 0.5 }}>after this</span>
-            </MenuItem>
-          )}
           {/* Diagram / Draw / Speak */}
-          {!!props.onTextDiagram && <ListDivider />}
-          {!!props.onTextDiagram && (
-            <MenuItem onClick={handleOpsDiagram} disabled={!couldDiagram}>
-              <ListItemDecorator><AccountTreeOutlinedIcon /></ListItemDecorator>
-              Auto-Diagram ...
-            </MenuItem>
-          )}
           {!!props.onTextImagine && (
             <MenuItem onClick={handleOpsImagine} disabled={!couldImagine || props.isImagining}>
               <ListItemDecorator>{props.isImagining ? <CircularProgress size='sm' /> : <FormatPaintOutlinedIcon />}</ListItemDecorator>
@@ -769,7 +746,7 @@ export function ChatMessage(props: {
                   : <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'space-between', gap: 1 }}>Retry<KeyStroke combo='Ctrl + Shift + G' /></Box>}
             </MenuItem>
           )}
-          {!!props.onMessageBeam && (
+          {/* {!!props.onMessageBeam && (
             <MenuItem disabled={fromSystem} onClick={handleOpsBeamFrom}>
               <ListItemDecorator>
                 <ChatBeamIcon color={fromSystem ? undefined : 'primary'} />
@@ -780,7 +757,7 @@ export function ChatMessage(props: {
                   ? <>Beam <span style={{ opacity: 0.5 }}>this message</span></>
                   : <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'space-between', gap: 1 }}>Beam<KeyStroke combo='Ctrl + Shift + B' /></Box>}
             </MenuItem>
-          )}
+          )} */}
         </CloseableMenu>
       )}
 

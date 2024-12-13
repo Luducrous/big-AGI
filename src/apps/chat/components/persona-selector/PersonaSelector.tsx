@@ -146,7 +146,7 @@ export function PersonaSelector(props: { conversationId: DConversationId, runExa
     // const selectedExample = selectedPurpose?.examples?.length
     //   ? selectedPurpose.examples[Math.floor(Math.random() * selectedPurpose.examples.length)]
     //   : null;
-    const fourExamples = selectedPurpose?.examples?.slice(0, 4) ?? null;
+    const fourExamples = selectedPurpose?.examples ?? null;
     return { selectedPurpose, fourExamples };
   }, [systemPurposeId]);
 

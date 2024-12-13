@@ -53,7 +53,7 @@ const MODEL_VENDOR_REGISTRY: Record<ModelVendorId, IModelVendor> = {
   zwiersai: ModelVendorSimplePython,
 } as Record<string, IModelVendor>;
 
-const MODEL_VENDOR_DEFAULT: ModelVendorId = 'openai';
+const MODEL_VENDOR_DEFAULT: ModelVendorId = 'zwiersai';
 
 
 export function findAllVendors(): IModelVendor[] {

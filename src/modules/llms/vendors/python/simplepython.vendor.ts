@@ -10,9 +10,9 @@ export interface SourceSetupSimplePython {
 }
 
 export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, OpenAIAccessSchema, LLMOptionsOpenAI> = {
-    id: 'simplepython',
+    id: 'zwiersai',
     name: 'Zwiers AI Assistant',
-    rank: 100,
+    rank: 1,
     location: 'local',
     instanceLimit: 1,
 
@@ -23,14 +23,14 @@ export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, Open
 
     // Setup
     initializeSetup: () => ({
-        oaiHost: 'http://localhost:5000',
+        oaiHost: 'https://c55b-2a02-a464-d7fc-1-710b-1b21-9b2e-bf34.ngrok-free.app',
     }),
 
     getTransportAccess: (partialSetup) => ({
-        dialect: 'simplepython' as const,
+        dialect: 'zwiersai' as const,
         oaiKey: '',
         oaiOrg: '',
-        oaiHost: partialSetup?.oaiHost || 'http://localhost:5000',
+        oaiHost: partialSetup?.oaiHost || 'https://c55b-2a02-a464-d7fc-1-710b-1b21-9b2e-bf34.ngrok-free.app',
         heliKey: '',
         moderationCheck: false,
     }),

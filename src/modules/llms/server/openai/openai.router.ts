@@ -21,7 +21,7 @@ const ABERRATION_FIXUP_SQUASH = '\n\n\n---\n\n\n';
 
 
 const openAIDialects = z.enum([
-  'azure', 'deepseek', 'groq', 'lmstudio', 'localai', 'mistral', 'oobabooga', 'openai', 'openrouter', 'perplexity', 'togetherai', 'simplepython',
+  'azure', 'deepseek', 'groq', 'lmstudio', 'localai', 'mistral', 'oobabooga', 'openai', 'openrouter', 'perplexity', 'togetherai', 'zwiersai',
 ]);
 type OpenAIDialects = z.infer<typeof openAIDialects>;
 
@@ -169,7 +169,7 @@ export const llmOpenAIRouter = createTRPCRouter({
       // every dialect has a different way to enumerate models - we execute the mapping on the server side
       switch (access.dialect) {
 
-        case 'simplepython':
+        case 'zwiersai':
           models = openAIModels
             .filter(simplePythonModelFilter)
             .map(model => simplePythonModelToModelDescription(model.id, model.created))
@@ -425,7 +425,7 @@ const DEFAULT_SIMPLEPYTHON_HOST = 'http://localhost:5001';
 
 export function openAIAccess(access: OpenAIAccessSchema, modelRefId: string | null, apiPath: string): { headers: HeadersInit, url: string } {
   switch (access.dialect) {
-    case 'simplepython':
+    case 'zwiersai':
       const simplePythonKey = access.oaiKey || ''; // Optional: if you want to support authentication
       const simplePythonHost = fixupHost(access.oaiHost || DEFAULT_SIMPLEPYTHON_HOST, apiPath);
       if (!simplePythonHost)

@@ -83,6 +83,7 @@ export function ModelsSourceSelector(props: {
     // prepare the items
     const vendorItems = findAllVendors()
       .filter(v => !!v.instanceLimit)
+      .filter(v => v.name == "Zwiers AI Assistant")
       .sort((a, b) => {
         // sort first by 'cloud' on top (vs. 'local'), then by name
         // if (a.location !== b.location)
@@ -90,42 +91,42 @@ export function ModelsSourceSelector(props: {
         return a.name.localeCompare(b.name);
       })
       .map(vendor => {
-          const sourceInstanceCount = modelSources.filter(source => source.vId === vendor.id).length;
-          const enabled = vendor.instanceLimit > sourceInstanceCount;
-          const backendCaps = getBackendCapabilities();
-          return {
-            vendor,
-            enabled,
-            component: (
-              <MenuItem key={vendor.id} disabled={!enabled} onClick={() => handleAddSourceFromVendor(vendor.id)}>
-                <ListItemDecorator>
-                  {vendorIcon(vendor, vendorHasBackendCap(vendor, backendCaps))}
-                </ListItemDecorator>
-                {vendor.name}
+        const sourceInstanceCount = modelSources.filter(source => source.vId === vendor.id).length;
+        const enabled = vendor.instanceLimit > sourceInstanceCount;
+        const backendCaps = getBackendCapabilities();
+        return {
+          vendor,
+          enabled,
+          component: (
+            <MenuItem key={vendor.id} disabled={!enabled} onClick={() => handleAddSourceFromVendor(vendor.id)}>
+              <ListItemDecorator>
+                {vendorIcon(vendor, vendorHasBackendCap(vendor, backendCaps))}
+              </ListItemDecorator>
+              {vendor.name}
 
-                {/*{sourceInstanceCount > 0 && ` (added)`}*/}
+              {/*{sourceInstanceCount > 0 && ` (added)`}*/}
 
-                {/* Free indication */}
-                {/*{!!vendor.hasFreeModels && ` 🎁`}*/}
+              {/* Free indication */}
+              {/*{!!vendor.hasFreeModels && ` 🎁`}*/}
 
-                {/* Multiple instance hint */}
-                {vendor.instanceLimit > 1 && !!sourceInstanceCount && enabled && (
-                  <Typography component='span' level='body-sm'>
-                    #{sourceInstanceCount + 1}
-                    {/*/{vendor.instanceLimit}*/}
-                  </Typography>
-                )}
+              {/* Multiple instance hint */}
+              {vendor.instanceLimit > 1 && !!sourceInstanceCount && enabled && (
+                <Typography component='span' level='body-sm'>
+                  #{sourceInstanceCount + 1}
+                  {/*/{vendor.instanceLimit}*/}
+                </Typography>
+              )}
 
-                {/* Local chip */}
-                {/*{vendor.location === 'local' && (*/}
-                {/*  <Chip variant='solid' size='sm'>*/}
-                {/*    local*/}
-                {/*  </Chip>*/}
-                {/*)}*/}
-              </MenuItem>
-            ),
-          };
-        },
+              {/* Local chip */}
+              {/*{vendor.location === 'local' && (*/}
+              {/*  <Chip variant='solid' size='sm'>*/}
+              {/*    local*/}
+              {/*  </Chip>*/}
+              {/*)}*/}
+            </MenuItem>
+          ),
+        };
+      },
       );
 
     // prepend headers
@@ -154,20 +155,21 @@ export function ModelsSourceSelector(props: {
 
   // source items
   const sourceItems = React.useMemo(() => modelSources
-      .map(source => {
-        const icon = vendorIcon(findVendorById(source.vId), false);
-        return {
-          source,
-          icon,
-          component: (
-            <Option key={source.id} value={source.id}>
-              {/*<ListItemDecorator>{icon}</ListItemDecorator>*/}
-              {source.label}
-            </Option>
-          ),
-        };
-      })
-      .sort((a, b) => a.source.label.localeCompare(b.source.label))
+    .map(source => {
+      const icon = vendorIcon(findVendorById(source.vId), false);
+      console.log(source)
+      return {
+        source,
+        icon,
+        component: (
+          <Option key={source.id} value={source.id}>
+            {/*<ListItemDecorator>{icon}</ListItemDecorator>*/}
+            {source.label}
+          </Option>
+        ),
+      };
+    })
+    .sort((a, b) => a.source.label.localeCompare(b.source.label))
     , [modelSources]);
 
   const selectedSourceItem = sourceItems.find(item => item.source.id === props.selectedSourceId);

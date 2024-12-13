@@ -18,7 +18,7 @@ import { DLLMId, DModelSource, DModelSourceId, findLLMOrThrow, findSourceOrThrow
 import { ModelVendorDeepseek } from './deepseek/deepseekai.vendor';
 
 export type ModelVendorId =
-  | 'simplepython'
+  | 'zwiersai'
   | 'anthropic'
   | 'azure'
   | 'googleai'
@@ -50,7 +50,7 @@ const MODEL_VENDOR_REGISTRY: Record<ModelVendorId, IModelVendor> = {
   perplexity: ModelVendorPerplexity,
   togetherai: ModelVendorTogetherAI,
   deepseek: ModelVendorDeepseek,
-  simplepython: ModelVendorSimplePython,
+  zwiersai: ModelVendorSimplePython,
 } as Record<string, IModelVendor>;
 
 const MODEL_VENDOR_DEFAULT: ModelVendorId = 'openai';

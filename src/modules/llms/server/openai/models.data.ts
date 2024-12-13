@@ -1088,12 +1088,12 @@ export function groqModelSortFn(a: ModelDescriptionSchema, b: ModelDescriptionSc
 // Simple Python
 const _knownSimplePythonModels: ManualMappings = [
   {
-    idPrefix: 'simple-python-model',
+    idPrefix: 'zwiers-ai-model',
     label: 'Zwiers AI Assistant',
     description: 'Zwiers AI Assistant for Zwiers Language & Exam Centre',
-    contextWindow: 4096,
+    contextWindow: 128000,
     interfaces: [LLM_IF_OAI_Chat],
-    maxCompletionTokens: 1024,
+    maxCompletionTokens: 4096,
   },
 ];
 

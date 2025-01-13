@@ -30,7 +30,7 @@ export function SimplePythonSourceSetup(props: { sourceId: DModelSourceId }) {
         <FormTextField
             autoCompleteId='buddygpt-server'
             title='Server URL'
-            placeholder='https://9b93-86-83-122-8.ngrok-free.app'
+            placeholder='https://ef9e-86-83-122-8.ngrok-free.app'
             value={oaiHost}
             onChange={text => updateSetup({ oaiHost: text })}
         />

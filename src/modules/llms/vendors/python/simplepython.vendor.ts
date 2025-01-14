@@ -23,14 +23,14 @@ export const ModelVendorSimplePython: IModelVendor<SourceSetupSimplePython, Open
 
     // Setup
     initializeSetup: () => ({
-        oaiHost: 'https://ef9e-86-83-122-8.ngrok-free.app',
+        oaiHost: 'https://zwiersai.luducrous.com',
     }),
 
     getTransportAccess: (partialSetup) => ({
         dialect: 'zwiersai' as const,
         oaiKey: '',
         oaiOrg: '',
-        oaiHost: partialSetup?.oaiHost || 'https://ef9e-86-83-122-8.ngrok-free.app',
+        oaiHost: partialSetup?.oaiHost || 'https://zwiersai.luducrous.com',
         heliKey: '',
         moderationCheck: false,
     }),
